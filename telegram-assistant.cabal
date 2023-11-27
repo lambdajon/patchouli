@@ -25,6 +25,8 @@ library
   exposed-modules: Assistant
   build-depends:
     , base                 ^>=4.17.2.0
+    , effectful
+    , effectful-th
     , hackage-db
     , hoogle
     , telegram-bot-simple
