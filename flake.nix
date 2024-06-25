@@ -1,5 +1,5 @@
 {
-  description = "Telegram bot assistant for @haskell-uz community";
+  description = "Telegram bot assistant for @haskelluz community";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -12,22 +12,9 @@
     in
     {
       devShells.default = pkgs.mkShell ({
-        buildInputs = with pkgs;
-          let
-            hpkgs = haskell.packages.ghc94;
-          in
-          [
-            haskell.compiler.ghc94
-            hpkgs.haskell-language-server
-            hpkgs.hls-cabal-plugin
-            hpkgs.hls-cabal-fmt-plugin
-            hpkgs.hls-eval-plugin
-            hpkgs.cabal-fmt
-            hpkgs.fourmolu
-            hpkgs.hlint
-            cabal-install
-            zlib
-          ];
+        buildInputs = with pkgs; [
+          zlib
+        ];
       });
     }
   );
