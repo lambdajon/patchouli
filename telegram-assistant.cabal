@@ -24,7 +24,7 @@ library
   import:          warnings, defaults
   exposed-modules: Assistant
   build-depends:
-    , base                 ^>=4.17.2.0
+    , base                 >=4.7 && <5
     , effectful
     , effectful-th
     , hackage-db
@@ -37,7 +37,7 @@ executable telegram-assistant
   import:         warnings, defaults
   main-is:        Main.hs
   build-depends:
-    , base                ^>=4.17.2.0
+    , base                >=4.7 && <5
     , telegram-assistant
 
   hs-source-dirs: app
