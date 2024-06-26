@@ -27,6 +27,7 @@ library
     , base                 >=4.7 && <5
     , effectful
     , effectful-th
+    , exceptions
     , hackage-db
     , hoogle
     , telegram-bot-simple
