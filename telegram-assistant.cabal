@@ -24,13 +24,15 @@ library
   import:          warnings, defaults
   exposed-modules: Assistant
   build-depends:
-    , base                 >=4.7 && <5
+    , base                 >=4.7   && <5
     , effectful
     , effectful-th
     , exceptions
     , hackage-db
     , hoogle
+    , telegram-bot-api     ==7.3.1
     , telegram-bot-simple
+    , text
 
   hs-source-dirs:  src
 
