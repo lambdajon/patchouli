@@ -30,7 +30,7 @@ library
     , exceptions
     , hackage-db
     , hoogle
-    , telegram-bot-api     ==7.3.1
+    , telegram-bot-api     ==7.4.4
     , telegram-bot-simple
     , text
 
