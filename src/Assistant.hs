@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+{-# OPTIONS_GHC -Wno-name-shadowing #-}
 
 module Assistant (module Assistant) where
 
@@ -14,7 +16,9 @@ import Hoogle (Target (..), defaultDatabaseLocation, searchDatabase, withDatabas
 import Telegram.Bot.API (Token (..), Update, defaultTelegramClientEnv)
 import Telegram.Bot.Simple (BotApp (..), startBot_, (<#))
 import Telegram.Bot.Simple qualified as TBS
-import Telegram.Bot.Simple.UpdateParser (parseUpdate, command)
+import Telegram.Bot.Simple.UpdateParser (command, parseUpdate)
+
+import Assistant.Env
 
 type Model :: Type
 type Model = ()
@@ -34,8 +38,9 @@ assistantBot =
     }
 
 updateToAction :: Model -> Update -> Maybe Action
-updateToAction _ = parseUpdate $
-  ActionHoogleSearch <$> command "hoogle"
+updateToAction _ =
+  parseUpdate $
+    ActionHoogleSearch <$> command "hoogle"
 
 displayTarget :: Target -> Text
 displayTarget Target{..} = T.pack targetURL
@@ -51,7 +56,10 @@ handleAction action model = case action of
       let result = T.intercalate "\n\n" . map displayTarget $ ts
       pure result
 
-run :: Token -> IO ()
-run token = do
-  env <- defaultTelegramClientEnv token
-  startBot_ assistantBot env
+run :: IO ()
+run = do
+  env <- loadBotEnv "config.toml"
+  case env of
+    (BotEnv (Token token)) -> do
+      e <- defaultTelegramClientEnv $ Token token
+      startBot_ assistantBot e

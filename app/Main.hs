@@ -1,4 +1,8 @@
 module Main (main) where
 
+import Assistant (run)
+
 main :: IO ()
-main = pure ()
+main = do
+  putStrLn "Hello, Assistant!"
+  run

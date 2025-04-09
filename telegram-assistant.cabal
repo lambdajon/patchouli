@@ -1,6 +1,6 @@
 cabal-version:   3.0
 name:            telegram-assistant
-version:         0.0.0.0
+version:         0.0.0.1
 license:         BSD-3-Clause
 license-file:    LICENSE
 author:          thelissimus
@@ -22,7 +22,10 @@ common defaults
 
 library
   import:          warnings, defaults
-  exposed-modules: Assistant
+  exposed-modules: 
+    Assistant
+  other-modules:
+    Assistant.Env
   build-depends:
     , base                 >=4.7   && <5
     , effectful
@@ -33,6 +36,7 @@ library
     , telegram-bot-api     ==7.4.4
     , telegram-bot-simple
     , text
+    , tomland
 
   hs-source-dirs:  src
 
